@@ -9,11 +9,13 @@
 #import "ViewController.h"
 #import <MAMapKit/MAMapKit.h>
 #import <AMapSearchKit/AMapSearchAPI.h>
+#import "CustomAnnotationView.h"
 
 #define APIKey      @"95ed2da3e9f4ece6319afbc437fc0b01"
 
 #define kDefaultLocationZoomLevel       16.1
 #define kDefaultControlMargin           22
+#define kDefaultCalloutViewMargin       -8
 
 @interface ViewController ()<MAMapViewDelegate, AMapSearchDelegate, UITableViewDataSource, UITableViewDelegate>
 {
@@ -111,6 +113,15 @@
 
 #pragma mark - Helpers
 
+- (CGSize)offsetToContainRect:(CGRect)innerRect inRect:(CGRect)outerRect
+{
+    CGFloat nudgeRight = fmaxf(0, CGRectGetMinX(outerRect) - (CGRectGetMinX(innerRect)));
+    CGFloat nudgeLeft = fminf(0, CGRectGetMaxX(outerRect) - (CGRectGetMaxX(innerRect)));
+    CGFloat nudgeTop = fmaxf(0, CGRectGetMinY(outerRect) - (CGRectGetMinY(innerRect)));
+    CGFloat nudgeBottom = fminf(0, CGRectGetMaxY(outerRect) - (CGRectGetMaxY(innerRect)));
+    return CGSizeMake(nudgeLeft ?: nudgeRight, nudgeTop ?: nudgeBottom);
+}
+
 - (void)searchAction
 {
     if (_currentLocation == nil || _search == nil)
@@ -196,13 +207,18 @@
     if ([annotation isKindOfClass:[MAPointAnnotation class]])
     {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-        MAPinAnnotationView *annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        CustomAnnotationView *annotationView = (CustomAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
         if (annotationView == nil)
         {
-            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+            annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
-        annotationView.canShowCallout = YES;
+        annotationView.image = [UIImage imageNamed:@"restaurant"];
         
+        // 设置为NO，用以调用自定义的calloutView
+        annotationView.canShowCallout = NO;
+        
+        // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
+        annotationView.centerOffset = CGPointMake(0, -18);
         return annotationView;
     }
     
@@ -225,7 +241,10 @@
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
 {
 //    NSLog(@"userLocation: %@", userLocation.location);
-    _currentLocation = [userLocation.location copy];
+    if (updatingLocation)
+    {
+        _currentLocation = [userLocation.location copy];
+    }
 }
 
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
@@ -234,6 +253,27 @@
     if ([view.annotation isKindOfClass:[MAUserLocation class]])
     {
         [self reGeoAction];
+    }
+    
+    // 调整自定义callout的位置，使其可以完全显示
+    if ([view isKindOfClass:[CustomAnnotationView class]]) {
+        CustomAnnotationView *cusView = (CustomAnnotationView *)view;
+        CGRect frame = [cusView convertRect:cusView.calloutView.frame toView:_mapView];
+        
+        frame = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(kDefaultCalloutViewMargin, kDefaultCalloutViewMargin, kDefaultCalloutViewMargin, kDefaultCalloutViewMargin));
+        
+        if (!CGRectContainsRect(_mapView.frame, frame))
+        {
+            CGSize offset = [self offsetToContainRect:frame inRect:_mapView.frame];
+            
+            CGPoint theCenter = _mapView.center;
+            theCenter = CGPointMake(theCenter.x - offset.width, theCenter.y - offset.height);
+            
+            CLLocationCoordinate2D coordinate = [_mapView convertPoint:theCenter toCoordinateFromView:_mapView];
+            
+            [_mapView setCenterCoordinate:coordinate animated:YES];
+        }
+        
     }
 }
 

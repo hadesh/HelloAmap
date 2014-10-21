@@ -25,6 +25,10 @@
 		811CA18B19F63F6E009B9209 /* location_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811CA18919F63F6E009B9209 /* location_no@2x.png */; };
 		811CA18C19F63F6E009B9209 /* location_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811CA18A19F63F6E009B9209 /* location_yes@2x.png */; };
 		811CA19019F64EA4009B9209 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811CA18F19F64EA4009B9209 /* search@2x.png */; };
+		8179C6FA19F65F3A008F9C13 /* restaurant.png in Resources */ = {isa = PBXBuildFile; fileRef = 8179C6F919F65F3A008F9C13 /* restaurant.png */; };
+		8179C6FD19F66033008F9C13 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8179C6FC19F66033008F9C13 /* CustomAnnotationView.m */; };
+		8179C70019F660BD008F9C13 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8179C6FF19F660BD008F9C13 /* CustomCalloutView.m */; };
+		8179C70219F661F9008F9C13 /* building.png in Resources */ = {isa = PBXBuildFile; fileRef = 8179C70119F661F9008F9C13 /* building.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,12 @@
 		811CA18919F63F6E009B9209 /* location_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_no@2x.png"; sourceTree = "<group>"; };
 		811CA18A19F63F6E009B9209 /* location_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_yes@2x.png"; sourceTree = "<group>"; };
 		811CA18F19F64EA4009B9209 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
+		8179C6F919F65F3A008F9C13 /* restaurant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restaurant.png; sourceTree = "<group>"; };
+		8179C6FB19F66033008F9C13 /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
+		8179C6FC19F66033008F9C13 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
+		8179C6FE19F660BD008F9C13 /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutView.h; sourceTree = "<group>"; };
+		8179C6FF19F660BD008F9C13 /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutView.m; sourceTree = "<group>"; };
+		8179C70119F661F9008F9C13 /* building.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +133,10 @@
 				811CA15719F612AB009B9209 /* AppDelegate.m */,
 				811CA15919F612AB009B9209 /* ViewController.h */,
 				811CA15A19F612AB009B9209 /* ViewController.m */,
+				8179C6FB19F66033008F9C13 /* CustomAnnotationView.h */,
+				8179C6FC19F66033008F9C13 /* CustomAnnotationView.m */,
+				8179C6FE19F660BD008F9C13 /* CustomCalloutView.h */,
+				8179C6FF19F660BD008F9C13 /* CustomCalloutView.m */,
 				811CA15C19F612AB009B9209 /* Main.storyboard */,
 				811CA15F19F612AB009B9209 /* Images.xcassets */,
 				811CA16119F612AB009B9209 /* LaunchScreen.xib */,
@@ -160,9 +174,11 @@
 		811CA18819F63F6E009B9209 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8179C6F919F65F3A008F9C13 /* restaurant.png */,
 				811CA18F19F64EA4009B9209 /* search@2x.png */,
 				811CA18919F63F6E009B9209 /* location_no@2x.png */,
 				811CA18A19F63F6E009B9209 /* location_yes@2x.png */,
+				8179C70119F661F9008F9C13 /* building.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -254,6 +270,8 @@
 				811CA16319F612AB009B9209 /* LaunchScreen.xib in Resources */,
 				811CA16019F612AB009B9209 /* Images.xcassets in Resources */,
 				811CA18C19F63F6E009B9209 /* location_yes@2x.png in Resources */,
+				8179C6FA19F65F3A008F9C13 /* restaurant.png in Resources */,
+				8179C70219F661F9008F9C13 /* building.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +290,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				811CA15B19F612AB009B9209 /* ViewController.m in Sources */,
+				8179C70019F660BD008F9C13 /* CustomCalloutView.m in Sources */,
 				811CA15819F612AB009B9209 /* AppDelegate.m in Sources */,
+				8179C6FD19F66033008F9C13 /* CustomAnnotationView.m in Sources */,
 				811CA15519F612AB009B9209 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
