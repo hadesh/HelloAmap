@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		811CA15519F612AB009B9209 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 811CA15419F612AB009B9209 /* main.m */; };
+		811CA15819F612AB009B9209 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 811CA15719F612AB009B9209 /* AppDelegate.m */; };
+		811CA15B19F612AB009B9209 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811CA15A19F612AB009B9209 /* ViewController.m */; };
+		811CA15E19F612AB009B9209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 811CA15C19F612AB009B9209 /* Main.storyboard */; };
+		811CA16019F612AB009B9209 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 811CA15F19F612AB009B9209 /* Images.xcassets */; };
+		811CA16319F612AB009B9209 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811CA16119F612AB009B9209 /* LaunchScreen.xib */; };
+		811CA16F19F612AB009B9209 /* HelloAmapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 811CA16E19F612AB009B9209 /* HelloAmapTests.m */; };
+		811CA17A19F61314009B9209 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811CA17819F61314009B9209 /* AMapSearchKit.framework */; };
+		811CA17B19F61314009B9209 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811CA17919F61314009B9209 /* MAMapKit.framework */; };
+		811CA17D19F61326009B9209 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 811CA17C19F61326009B9209 /* AMap.bundle */; };
+		811CA17F19F6137F009B9209 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811CA17E19F6137F009B9209 /* Security.framework */; };
+		811CA18119F61386009B9209 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811CA18019F61386009B9209 /* SystemConfiguration.framework */; };
+		811CA18319F6138C009B9209 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811CA18219F6138C009B9209 /* CoreTelephony.framework */; };
+		811CA18519F61394009B9209 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 811CA18419F61394009B9209 /* libstdc++.6.0.9.dylib */; };
+		811CA18719F613A3009B9209 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 811CA18619F613A3009B9209 /* libz.dylib */; };
+		811CA18B19F63F6E009B9209 /* location_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811CA18919F63F6E009B9209 /* location_no@2x.png */; };
+		811CA18C19F63F6E009B9209 /* location_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811CA18A19F63F6E009B9209 /* location_yes@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		811CA16919F612AB009B9209 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 811CA14719F612AB009B9209 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 811CA14E19F612AB009B9209;
+			remoteInfo = HelloAmap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		811CA14F19F612AB009B9209 /* HelloAmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloAmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		811CA15319F612AB009B9209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		811CA15419F612AB009B9209 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		811CA15619F612AB009B9209 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		811CA15719F612AB009B9209 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		811CA15919F612AB009B9209 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		811CA15A19F612AB009B9209 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		811CA15D19F612AB009B9209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		811CA15F19F612AB009B9209 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		811CA16219F612AB009B9209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		811CA16819F612AB009B9209 /* HelloAmapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloAmapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		811CA16D19F612AB009B9209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		811CA16E19F612AB009B9209 /* HelloAmapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloAmapTests.m; sourceTree = "<group>"; };
+		811CA17819F61314009B9209 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = HelloAmap/Extern/AMapSearchKit.framework; sourceTree = "<group>"; };
+		811CA17919F61314009B9209 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = HelloAmap/Extern/MAMapKit.framework; sourceTree = "<group>"; };
+		811CA17C19F61326009B9209 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMap.bundle; path = HelloAmap/Extern/MAMapKit.framework/Versions/2.4.0.601e6b9.60159/Resources/AMap.bundle; sourceTree = "<group>"; };
+		811CA17E19F6137F009B9209 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		811CA18019F61386009B9209 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		811CA18219F6138C009B9209 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		811CA18419F61394009B9209 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		811CA18619F613A3009B9209 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		811CA18919F63F6E009B9209 /* location_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_no@2x.png"; sourceTree = "<group>"; };
+		811CA18A19F63F6E009B9209 /* location_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_yes@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		811CA14C19F612AB009B9209 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				811CA18719F613A3009B9209 /* libz.dylib in Frameworks */,
+				811CA18519F61394009B9209 /* libstdc++.6.0.9.dylib in Frameworks */,
+				811CA18319F6138C009B9209 /* CoreTelephony.framework in Frameworks */,
+				811CA18119F61386009B9209 /* SystemConfiguration.framework in Frameworks */,
+				811CA17F19F6137F009B9209 /* Security.framework in Frameworks */,
+				811CA17A19F61314009B9209 /* AMapSearchKit.framework in Frameworks */,
+				811CA17B19F61314009B9209 /* MAMapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		811CA16519F612AB009B9209 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		811CA14619F612AB009B9209 = {
+			isa = PBXGroup;
+			children = (
+				811CA18619F613A3009B9209 /* libz.dylib */,
+				811CA18419F61394009B9209 /* libstdc++.6.0.9.dylib */,
+				811CA18219F6138C009B9209 /* CoreTelephony.framework */,
+				811CA18019F61386009B9209 /* SystemConfiguration.framework */,
+				811CA17E19F6137F009B9209 /* Security.framework */,
+				811CA17C19F61326009B9209 /* AMap.bundle */,
+				811CA17819F61314009B9209 /* AMapSearchKit.framework */,
+				811CA17919F61314009B9209 /* MAMapKit.framework */,
+				811CA15119F612AB009B9209 /* HelloAmap */,
+				811CA16B19F612AB009B9209 /* HelloAmapTests */,
+				811CA15019F612AB009B9209 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		811CA15019F612AB009B9209 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				811CA14F19F612AB009B9209 /* HelloAmap.app */,
+				811CA16819F612AB009B9209 /* HelloAmapTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		811CA15119F612AB009B9209 /* HelloAmap */ = {
+			isa = PBXGroup;
+			children = (
+				811CA18819F63F6E009B9209 /* Resources */,
+				811CA15619F612AB009B9209 /* AppDelegate.h */,
+				811CA15719F612AB009B9209 /* AppDelegate.m */,
+				811CA15919F612AB009B9209 /* ViewController.h */,
+				811CA15A19F612AB009B9209 /* ViewController.m */,
+				811CA15C19F612AB009B9209 /* Main.storyboard */,
+				811CA15F19F612AB009B9209 /* Images.xcassets */,
+				811CA16119F612AB009B9209 /* LaunchScreen.xib */,
+				811CA15219F612AB009B9209 /* Supporting Files */,
+			);
+			path = HelloAmap;
+			sourceTree = "<group>";
+		};
+		811CA15219F612AB009B9209 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				811CA15319F612AB009B9209 /* Info.plist */,
+				811CA15419F612AB009B9209 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		811CA16B19F612AB009B9209 /* HelloAmapTests */ = {
+			isa = PBXGroup;
+			children = (
+				811CA16E19F612AB009B9209 /* HelloAmapTests.m */,
+				811CA16C19F612AB009B9209 /* Supporting Files */,
+			);
+			path = HelloAmapTests;
+			sourceTree = "<group>";
+		};
+		811CA16C19F612AB009B9209 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				811CA16D19F612AB009B9209 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		811CA18819F63F6E009B9209 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				811CA18919F63F6E009B9209 /* location_no@2x.png */,
+				811CA18A19F63F6E009B9209 /* location_yes@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		811CA14E19F612AB009B9209 /* HelloAmap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 811CA17219F612AB009B9209 /* Build configuration list for PBXNativeTarget "HelloAmap" */;
+			buildPhases = (
+				811CA14B19F612AB009B9209 /* Sources */,
+				811CA14C19F612AB009B9209 /* Frameworks */,
+				811CA14D19F612AB009B9209 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloAmap;
+			productName = HelloAmap;
+			productReference = 811CA14F19F612AB009B9209 /* HelloAmap.app */;
+			productType = "com.apple.product-type.application";
+		};
+		811CA16719F612AB009B9209 /* HelloAmapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 811CA17519F612AB009B9209 /* Build configuration list for PBXNativeTarget "HelloAmapTests" */;
+			buildPhases = (
+				811CA16419F612AB009B9209 /* Sources */,
+				811CA16519F612AB009B9209 /* Frameworks */,
+				811CA16619F612AB009B9209 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				811CA16A19F612AB009B9209 /* PBXTargetDependency */,
+			);
+			name = HelloAmapTests;
+			productName = HelloAmapTests;
+			productReference = 811CA16819F612AB009B9209 /* HelloAmapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		811CA14719F612AB009B9209 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = AutoNavi;
+				TargetAttributes = {
+					811CA14E19F612AB009B9209 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					811CA16719F612AB009B9209 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = 811CA14E19F612AB009B9209;
+					};
+				};
+			};
+			buildConfigurationList = 811CA14A19F612AB009B9209 /* Build configuration list for PBXProject "HelloAmap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 811CA14619F612AB009B9209;
+			productRefGroup = 811CA15019F612AB009B9209 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				811CA14E19F612AB009B9209 /* HelloAmap */,
+				811CA16719F612AB009B9209 /* HelloAmapTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		811CA14D19F612AB009B9209 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				811CA17D19F61326009B9209 /* AMap.bundle in Resources */,
+				811CA18B19F63F6E009B9209 /* location_no@2x.png in Resources */,
+				811CA15E19F612AB009B9209 /* Main.storyboard in Resources */,
+				811CA16319F612AB009B9209 /* LaunchScreen.xib in Resources */,
+				811CA16019F612AB009B9209 /* Images.xcassets in Resources */,
+				811CA18C19F63F6E009B9209 /* location_yes@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		811CA16619F612AB009B9209 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		811CA14B19F612AB009B9209 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				811CA15B19F612AB009B9209 /* ViewController.m in Sources */,
+				811CA15819F612AB009B9209 /* AppDelegate.m in Sources */,
+				811CA15519F612AB009B9209 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		811CA16419F612AB009B9209 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				811CA16F19F612AB009B9209 /* HelloAmapTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		811CA16A19F612AB009B9209 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 811CA14E19F612AB009B9209 /* HelloAmap */;
+			targetProxy = 811CA16919F612AB009B9209 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		811CA15C19F612AB009B9209 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				811CA15D19F612AB009B9209 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		811CA16119F612AB009B9209 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				811CA16219F612AB009B9209 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		811CA17019F612AB009B9209 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		811CA17119F612AB009B9209 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		811CA17319F612AB009B9209 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HelloAmap/Extern",
+				);
+				INFOPLIST_FILE = HelloAmap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		811CA17419F612AB009B9209 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HelloAmap/Extern",
+				);
+				INFOPLIST_FILE = HelloAmap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		811CA17619F612AB009B9209 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HelloAmapTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloAmap.app/HelloAmap";
+			};
+			name = Debug;
+		};
+		811CA17719F612AB009B9209 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HelloAmapTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloAmap.app/HelloAmap";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		811CA14A19F612AB009B9209 /* Build configuration list for PBXProject "HelloAmap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				811CA17019F612AB009B9209 /* Debug */,
+				811CA17119F612AB009B9209 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		811CA17219F612AB009B9209 /* Build configuration list for PBXNativeTarget "HelloAmap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				811CA17319F612AB009B9209 /* Debug */,
+				811CA17419F612AB009B9209 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		811CA17519F612AB009B9209 /* Build configuration list for PBXNativeTarget "HelloAmapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				811CA17619F612AB009B9209 /* Debug */,
+				811CA17719F612AB009B9209 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 811CA14719F612AB009B9209 /* Project object */;
+}
