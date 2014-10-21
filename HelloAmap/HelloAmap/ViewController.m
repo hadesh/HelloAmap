@@ -38,9 +38,7 @@
     [self initMapView];
     [self initSearch];
     [self initControls];
-    
     [self initTableView];
-    
     [self initAttributes];
 }
 
@@ -165,9 +163,11 @@
     NSString *title = response.regeocode.addressComponent.city;
     if (title.length == 0)
     {
+        // 直辖市的city为空，取province
         title = response.regeocode.addressComponent.province;
     }
     
+    // 更新我的位置title
     _mapView.userLocation.title = title;
     _mapView.userLocation.subtitle = response.regeocode.formattedAddress;
 }
@@ -190,6 +190,24 @@
 }
 
 #pragma mark - MAMapViewDelegate
+
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MAPointAnnotation class]])
+    {
+        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+        MAPinAnnotationView *annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (annotationView == nil)
+        {
+            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+        }
+        annotationView.canShowCallout = YES;
+        
+        return annotationView;
+    }
+    
+    return nil;
+}
 
 - (void)mapView:(MAMapView *)mapView didChangeUserTrackingMode:(MAUserTrackingMode)mode animated:(BOOL)animated
 {
@@ -252,6 +270,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    // 为点击的poi点添加标注
     AMapPOI *poi = _pois[indexPath.row];
     
     MAPointAnnotation *annotation = [[MAPointAnnotation alloc] init];
