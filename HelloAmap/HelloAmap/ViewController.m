@@ -17,7 +17,7 @@
 #define kDefaultControlMargin           22
 #define kDefaultCalloutViewMargin       -8
 
-@interface ViewController ()<MAMapViewDelegate, AMapSearchDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ViewController ()<MAMapViewDelegate, AMapSearchDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 {
     MAMapView *_mapView;
     AMapSearchAPI *_search;
@@ -27,8 +27,12 @@
     
     UITableView *_tableView;
     NSArray *_pois;
-    
     NSMutableArray *_annotations;
+    
+    UILongPressGestureRecognizer *_longPressGesture;
+    MAPointAnnotation *_destinationPoint;
+    
+    NSArray *_pathPolylines;
 }
 @end
 
@@ -66,7 +70,7 @@
 - (void)initControls
 {
     _locationButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _locationButton.frame = CGRectMake(kDefaultControlMargin, CGRectGetHeight(_mapView.bounds) - 80, 40, 40);
+    _locationButton.frame = CGRectMake(kDefaultControlMargin, CGRectGetHeight(_mapView.bounds) - 60, 40, 40);
     _locationButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
     _locationButton.backgroundColor = [UIColor whiteColor];
     
@@ -78,7 +82,7 @@
     
     //
     UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    searchButton.frame = CGRectMake(80, CGRectGetHeight(_mapView.bounds) - 80, 40, 40);
+    searchButton.frame = CGRectMake(80, CGRectGetHeight(_mapView.bounds) - 60, 40, 40);
     searchButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
     searchButton.backgroundColor = [UIColor whiteColor];
     [searchButton setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
@@ -86,6 +90,17 @@
     [searchButton addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
     
     [_mapView addSubview:searchButton];
+    
+    //
+    UIButton *pathButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    pathButton.frame = CGRectMake(140, CGRectGetHeight(_mapView.bounds) - 60, 40, 40);
+    pathButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+    pathButton.backgroundColor = [UIColor whiteColor];
+    [pathButton setImage:[UIImage imageNamed:@"path"] forState:UIControlStateNormal];
+    
+    [pathButton addTarget:self action:@selector(pathAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_mapView addSubview:pathButton];
 
 }
 
@@ -93,6 +108,10 @@
 {
     _annotations = [NSMutableArray array];
     _pois = nil;
+    
+    _longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    _longPressGesture.delegate = self;
+    [_mapView addGestureRecognizer:_longPressGesture];
 }
 
 - (void)initTableView
@@ -120,6 +139,92 @@
     CGFloat nudgeTop = fmaxf(0, CGRectGetMinY(outerRect) - (CGRectGetMinY(innerRect)));
     CGFloat nudgeBottom = fminf(0, CGRectGetMaxY(outerRect) - (CGRectGetMaxY(innerRect)));
     return CGSizeMake(nudgeLeft ?: nudgeRight, nudgeTop ?: nudgeBottom);
+}
+
+- (CLLocationCoordinate2D *)coordinatesForString:(NSString *)string
+                                 coordinateCount:(NSUInteger *)coordinateCount
+                                      parseToken:(NSString *)token
+{
+    if (string == nil)
+    {
+        return NULL;
+    }
+    
+    if (token == nil)
+    {
+        token = @",";
+    }
+    
+    NSString *str = @"";
+    if (![token isEqualToString:@","])
+    {
+        str = [string stringByReplacingOccurrencesOfString:token withString:@","];
+    }
+    
+    else
+    {
+        str = [NSString stringWithString:string];
+    }
+    
+    NSArray *components = [str componentsSeparatedByString:@","];
+    NSUInteger count = [components count] / 2;
+    if (coordinateCount != NULL)
+    {
+        *coordinateCount = count;
+    }
+    CLLocationCoordinate2D *coordinates = (CLLocationCoordinate2D*)malloc(count * sizeof(CLLocationCoordinate2D));
+    
+    for (int i = 0; i < count; i++)
+    {
+        coordinates[i].longitude = [[components objectAtIndex:2 * i]     doubleValue];
+        coordinates[i].latitude  = [[components objectAtIndex:2 * i + 1] doubleValue];
+    }
+    
+    return coordinates;
+}
+
+- (NSArray *)polylinesForPath:(AMapPath *)path
+{
+    if (path == nil || path.steps.count == 0)
+    {
+        return nil;
+    }
+    
+    NSMutableArray *polylines = [NSMutableArray array];
+    
+    [path.steps enumerateObjectsUsingBlock:^(AMapStep *step, NSUInteger idx, BOOL *stop) {
+        
+        NSUInteger count = 0;
+        CLLocationCoordinate2D *coordinates = [self coordinatesForString:step.polyline
+                                                         coordinateCount:&count
+                                                              parseToken:@";"];
+        
+        MAPolyline *polyline = [MAPolyline polylineWithCoordinates:coordinates count:count];
+        [polylines addObject:polyline];
+        
+        free(coordinates), coordinates = NULL;
+    }];
+    
+    return polylines;
+}
+
+- (void)pathAction
+{
+    if (_destinationPoint == nil || _currentLocation == nil || _search == nil)
+    {
+        NSLog(@"path search failed");
+        return;
+    }
+    
+    AMapNavigationSearchRequest *request = [[AMapNavigationSearchRequest alloc] init];
+
+    // 设置为步行路径规划
+    request.searchType = AMapSearchType_NaviWalking;
+    
+    request.origin = [AMapGeoPoint locationWithLatitude:_currentLocation.coordinate.latitude longitude:_currentLocation.coordinate.longitude];
+    request.destination = [AMapGeoPoint locationWithLatitude:_destinationPoint.coordinate.latitude longitude:_destinationPoint.coordinate.longitude];
+    
+    [_search AMapNavigationSearch:request];
 }
 
 - (void)searchAction
@@ -160,6 +265,33 @@
     }
 }
 
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gesture
+{
+    if (gesture.state == UIGestureRecognizerStateBegan)
+    {
+        CLLocationCoordinate2D coordinate = [_mapView convertPoint:[gesture locationInView:_mapView]
+                                                  toCoordinateFromView:_mapView];
+        
+        // 添加标注
+        if (_destinationPoint != nil)
+        {
+            // 清理
+            [_mapView removeAnnotation:_destinationPoint];
+            _destinationPoint = nil;
+            
+            [_mapView removeOverlays:_pathPolylines];
+            _pathPolylines = nil;
+        }
+        
+        _destinationPoint = [[MAPointAnnotation alloc] init];
+        _destinationPoint.coordinate = coordinate;
+        _destinationPoint.title = @"Destination";
+        
+        [_mapView addAnnotation:_destinationPoint];
+    }
+
+}
+
 #pragma mark - AMapSearchDelegate
 
 - (void)searchRequest:(id)request didFailWithError:(NSError *)error
@@ -185,8 +317,8 @@
 
 - (void)onPlaceSearchDone:(AMapPlaceSearchRequest *)request response:(AMapPlaceSearchResponse *)response
 {
-    NSLog(@"request: %@", request);
-    NSLog(@"response: %@", response);
+//    NSLog(@"request: %@", request);
+//    NSLog(@"response: %@", response);
     
     if (response.pois.count > 0)
     {
@@ -200,10 +332,57 @@
     }
 }
 
+- (void)onNavigationSearchDone:(AMapNavigationSearchRequest *)request response:(AMapNavigationSearchResponse *)response
+{
+//    NSLog(@"request: %@", request);
+//    NSLog(@"response: %@", response);
+    if (response.count > 0)
+    {
+        [_mapView removeOverlays:_pathPolylines];
+        _pathPolylines = nil;
+        
+        // 只显示第一条
+        _pathPolylines = [self polylinesForPath:response.route.paths[0]];
+        [_mapView addOverlays:_pathPolylines];
+        
+        [_mapView showAnnotations:@[_destinationPoint, _mapView.userLocation] animated:YES];
+    }
+}
+
 #pragma mark - MAMapViewDelegate
+
+- (MAOverlayView *)mapView:(MAMapView *)mapView viewForOverlay:(id<MAOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[MAPolyline class]])
+    {
+        MAPolylineView *polylineView = [[MAPolylineView alloc] initWithPolyline:overlay];
+        
+        polylineView.lineWidth   = 4;
+        polylineView.strokeColor = [UIColor magentaColor];
+        
+        return polylineView;
+    }
+    
+    return nil;
+}
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
 {
+    if (annotation == _destinationPoint)
+    {
+        static NSString *reuseIndetifier = @"startAnnotationReuseIndetifier";
+        MAPinAnnotationView *annotationView = (MAPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (annotationView == nil)
+        {
+            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+        }
+
+        annotationView.canShowCallout = YES;
+        annotationView.animatesDrop = YES;
+
+        return annotationView;
+    }
+    
     if ([annotation isKindOfClass:[MAPointAnnotation class]])
     {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";

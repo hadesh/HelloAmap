@@ -29,6 +29,7 @@
 		8179C6FD19F66033008F9C13 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8179C6FC19F66033008F9C13 /* CustomAnnotationView.m */; };
 		8179C70019F660BD008F9C13 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8179C6FF19F660BD008F9C13 /* CustomCalloutView.m */; };
 		8179C70219F661F9008F9C13 /* building.png in Resources */ = {isa = PBXBuildFile; fileRef = 8179C70119F661F9008F9C13 /* building.png */; };
+		8179C70519F779AF008F9C13 /* path@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8179C70419F779AF008F9C13 /* path@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		8179C6FE19F660BD008F9C13 /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutView.h; sourceTree = "<group>"; };
 		8179C6FF19F660BD008F9C13 /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutView.m; sourceTree = "<group>"; };
 		8179C70119F661F9008F9C13 /* building.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building.png; sourceTree = "<group>"; };
+		8179C70419F779AF008F9C13 /* path@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "path@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				8179C6F919F65F3A008F9C13 /* restaurant.png */,
+				8179C70419F779AF008F9C13 /* path@2x.png */,
 				811CA18F19F64EA4009B9209 /* search@2x.png */,
 				811CA18919F63F6E009B9209 /* location_no@2x.png */,
 				811CA18A19F63F6E009B9209 /* location_yes@2x.png */,
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				811CA17D19F61326009B9209 /* AMap.bundle in Resources */,
+				8179C70519F779AF008F9C13 /* path@2x.png in Resources */,
 				811CA18B19F63F6E009B9209 /* location_no@2x.png in Resources */,
 				811CA15E19F612AB009B9209 /* Main.storyboard in Resources */,
 				811CA19019F64EA4009B9209 /* search@2x.png in Resources */,
