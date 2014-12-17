@@ -317,8 +317,8 @@
 
 - (void)onPlaceSearchDone:(AMapPlaceSearchRequest *)request response:(AMapPlaceSearchResponse *)response
 {
-//    NSLog(@"request: %@", request);
-//    NSLog(@"response: %@", response);
+    NSLog(@"request: %@", request);
+    NSLog(@"response: %@", response);
     
     if (response.pois.count > 0)
     {
