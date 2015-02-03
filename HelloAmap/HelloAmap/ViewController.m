@@ -33,12 +33,18 @@
     MAPointAnnotation *_destinationPoint;
     
     NSArray *_pathPolylines;
+    
+    NSMutableArray *_portraitConstraints;
+    NSMutableArray *_landscapeConstraints;
+    
+    BOOL _isMapStatusInitialized;
 }
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self initMapView];
@@ -46,20 +52,50 @@
     [self initControls];
     [self initTableView];
     [self initAttributes];
+    [self initConstraints];
 }
+
+- (void)viewDidLayoutSubviews
+{
+    if (!_isMapStatusInitialized)
+    {
+        _mapView.centerCoordinate = CLLocationCoordinate2DMake(39.91148, 116.40588);
+        _mapView.zoomLevel = 10.1;
+        
+        _isMapStatusInitialized = YES;
+    }
+    _mapView.compassOrigin = CGPointMake(CGRectGetWidth(_mapView.bounds) - 40, kDefaultControlMargin);
+    _mapView.scaleOrigin = CGPointMake(10, kDefaultControlMargin);
+
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+//    NSLog(@"%s", __func__);
+    [UIView animateWithDuration:duration animations:^{
+        [self updateConstraintsWithOrientation:toInterfaceOrientation];
+    }];
+}
+
+#pragma mark -
 
 - (void)initMapView
 {
     [MAMapServices sharedServices].apiKey = APIKey;
-    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) * 0.5)];
-    
+    _mapView = [[MAMapView alloc] init];
     _mapView.delegate = self;
-    _mapView.compassOrigin = CGPointMake(_mapView.compassOrigin.x, kDefaultControlMargin);
-    _mapView.scaleOrigin = CGPointMake(_mapView.scaleOrigin.x, kDefaultControlMargin);
     
     [self.view addSubview:_mapView];
     
     _mapView.showsUserLocation = YES;
+    
+    _isMapStatusInitialized = NO;
 }
 
 - (void)initSearch
@@ -125,12 +161,56 @@
     [self.view addSubview:_tableView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)initConstraints
+{
+    _mapView.translatesAutoresizingMaskIntoConstraints = NO;
+    _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+
+    _portraitConstraints = [NSMutableArray array];
+    
+    [_portraitConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_mapView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_mapView)]];
+    
+    [_portraitConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_mapView(==height)]" options:0 metrics:@{@"height":@(320)} views:NSDictionaryOfVariableBindings(_mapView)]];
+    
+    [_portraitConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    
+    [_portraitConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_mapView]-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_mapView, _tableView)]];
+
+    //
+    _landscapeConstraints = [NSMutableArray array];
+    
+    [_landscapeConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_mapView(==width)]" options:0 metrics:@{@"width":@(320)} views:NSDictionaryOfVariableBindings(_mapView)]];
+    
+    [_landscapeConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_mapView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_mapView)]];
+    
+    [_landscapeConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_mapView]-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_mapView, _tableView)]];
+    
+    [_landscapeConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    
+    //
+    [self updateConstraintsWithOrientation:[UIApplication sharedApplication].statusBarOrientation];
 }
 
 #pragma mark - Helpers
+
+- (void)updateConstraintsWithOrientation:(UIInterfaceOrientation)orientation
+{
+    if (UIInterfaceOrientationIsPortrait(orientation))
+    {
+//        [self.view removeConstraints:_landscapeConstraints];
+//        [self.view addConstraints:_portraitConstraints];
+        [NSLayoutConstraint deactivateConstraints:_landscapeConstraints];
+        [NSLayoutConstraint activateConstraints:_portraitConstraints];
+    }
+    else
+    {
+//        [self.view removeConstraints:_portraitConstraints];
+//        [self.view addConstraints:_landscapeConstraints];
+        [NSLayoutConstraint deactivateConstraints:_portraitConstraints];
+        [NSLayoutConstraint activateConstraints:_landscapeConstraints];
+    }
+}
 
 - (CGSize)offsetToContainRect:(CGRect)innerRect inRect:(CGRect)outerRect
 {
